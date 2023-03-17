@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { LocaleModule } from './locale.module';
 import { MatModule } from './mat.module';
 
 @NgModule({
@@ -13,6 +14,7 @@ import { MatModule } from './mat.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatModule,
+    LocaleModule
   ],
   providers: [],
   bootstrap: [AppComponent],
