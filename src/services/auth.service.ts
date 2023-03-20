@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private readonly _http: HttpClient) {}
+  constructor(private readonly http: HttpClient) {}
 
   async login() {
     const headers = new HttpHeaders({
@@ -31,7 +31,7 @@ export class AuthService {
         </soap:Envelope>
     `;
     const res = await firstValueFrom(
-      this._http.post(environment.apiOrigin, body, {
+      this.http.post(environment.apiOrigin, body, {
         headers,
         responseType: 'text',
       })
@@ -47,7 +47,6 @@ export class AuthService {
   async logout() {
     const headers = new HttpHeaders({
       'Content-Type': 'application/soap+xml;charset=UTF-8;',
-      sid: this.getSID(),
     });
     const soapAction = 'http://CIS/BIR/PUBL/2014/07/IUslugaBIRzewnPubl/Wyloguj';
     const body = `
@@ -67,7 +66,7 @@ export class AuthService {
         </soap:Envelope>
     `;
     const res = await firstValueFrom(
-      this._http.post(environment.apiOrigin, body, {
+      this.http.post(environment.apiOrigin, body, {
         headers,
         responseType: 'text',
       })
@@ -92,7 +91,6 @@ export class AuthService {
   async isSessionAlive(): Promise<boolean> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/soap+xml;charset=UTF-8;',
-      sid: this.getSID(),
     });
     const action = 'http://CIS/BIR/2014/07/IUslugaBIR/GetValue';
     const body = `
@@ -112,7 +110,7 @@ export class AuthService {
       </soap:Envelope>
     `;
     const res = await firstValueFrom(
-      this._http.post(environment.apiOrigin, body, {
+      this.http.post(environment.apiOrigin, body, {
         headers,
         responseType: 'text',
       })
