@@ -4,6 +4,6 @@ export const authInitializer = (auth: AuthService) => async () => {
   const isSessionAlive = await auth.isSessionAlive();
 
   if (!isSessionAlive) {
-    auth.login();
+    return auth.login();
   }
 };
