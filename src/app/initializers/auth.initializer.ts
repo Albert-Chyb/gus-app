@@ -1,4 +1,4 @@
-import { AuthService } from 'src/services/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 export const authInitializer = (auth: AuthService) => async () => {
   const isSessionAlive = await auth.isSessionAlive();
