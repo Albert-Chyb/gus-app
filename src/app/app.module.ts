@@ -10,6 +10,7 @@ import { authInitializer } from './initializers/auth.initializer';
 import { SidInterceptor } from './interceptors/sid.interceptor';
 import { LocaleModule } from './locale.module';
 import { MatModule } from './mat.module';
+import { GusInterceptor } from './interceptors/gus.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,6 +27,11 @@ import { MatModule } from './mat.module';
       provide: HTTP_INTERCEPTORS,
       multi: true,
       useClass: SidInterceptor,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      multi: true,
+      useClass: GusInterceptor,
     },
     {
       provide: APP_INITIALIZER,
