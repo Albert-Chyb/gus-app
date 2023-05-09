@@ -11,9 +11,10 @@ import { SidInterceptor } from './interceptors/sid.interceptor';
 import { LocaleModule } from './locale.module';
 import { MatModule } from './mat.module';
 import { GusInterceptor } from './interceptors/gus.interceptor';
+import { SearchCompaniesComponent } from './pages/search-companies/search-companies.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, SearchCompaniesComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
