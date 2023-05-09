@@ -14,9 +14,9 @@ export class AppComponent {
   ) {}
 
   test() {
-    const nip = '6570009774';
-
-    this.searchCompanies.byNIP(nip).then(console.log);
+    // this.searchCompanies.byNIP('5213003700').subscribe(console.log);
+    this.searchCompanies.byREGON('000001407').subscribe(console.log);
+    // this.searchCompanies.byKRS('0000030211').subscribe(console.log);
   }
 
   logout() {
