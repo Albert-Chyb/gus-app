@@ -13,7 +13,7 @@ import { SidInterceptor } from './interceptors/sid.interceptor';
 import { LocaleModule } from './locale.module';
 import { MatModule } from './mat.module';
 import { SearchCompaniesComponent } from './pages/search-companies/search-companies.component';
-import { MainContainerComponent } from './main-container/main-container.component';
+import { MainContainerComponent } from './components/main-container/main-container.component';
 
 @NgModule({
   declarations: [AppComponent, SearchCompaniesComponent, MainContainerComponent],
