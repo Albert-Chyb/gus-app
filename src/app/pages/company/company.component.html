@@ -1,1 +1,20 @@
-<p>company works!</p>
+<mat-card *ngIf="company$ | async as company">
+  <mat-card-header>
+    <h1 mat-card-title>Podstawowe informacje o podmiocie</h1>
+    <h2 mat-card-subtitle>{{ company.nazwa }}</h2>
+  </mat-card-header>
+
+  <mat-card-content>
+    <table mat-table [dataSource]="translateKeysForDisplay(company)">
+      <ng-container matColumnDef="key">
+        <td mat-cell *matCellDef="let data">{{ data[0] }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="value">
+        <td mat-cell *matCellDef="let data">{{ data[1] }}</td>
+      </ng-container>
+
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </mat-card-content>
+</mat-card>

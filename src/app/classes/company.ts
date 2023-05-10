@@ -83,13 +83,13 @@ export class Company implements CompanyData {
   getTypeDescription(): string {
     switch (this.typ) {
       case 'P':
-        return 'Prawna';
+        return 'Jednostka prawna';
       case 'F':
-        return 'Fizyczna';
+        return 'Jednostka fizyczna';
       case 'LP':
-        return 'Lokalna Prawna';
+        return 'Jednostka lokalna jednostki prawnej';
       case 'LF':
-        return 'Lokalna Fizyczna';
+        return 'Jednostka lokalna jednostki fizycznej';
       default:
         return 'Nieznany';
     }
