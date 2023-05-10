@@ -4,7 +4,7 @@
   </mat-card-header>
 
   <mat-card-content class="search-criterias">
-    <form class="search-criteria">
+    <form class="search-criteria" #nipForm="ngForm">
       <mat-form-field class="search-criteria__field">
         <mat-label>NIP</mat-label>
         <input
@@ -13,7 +13,6 @@
           matInput
           [(ngModel)]="nip"
           pattern="^[0-9]{10}$"
-          maxlength="10"
           required
           #nipModel="ngModel"
           placeholder="np.: 5261040828"
@@ -31,13 +30,13 @@
         mat-raised-button
         color="accent"
         type="submit"
-        [disabled]="nipModel.invalid"
+        [disabled]="nipForm.invalid"
       >
         Szukaj
       </button>
     </form>
 
-    <form class="search-criteria">
+    <form class="search-criteria" #regonForm="ngForm">
       <mat-form-field class="search-criteria__field">
         <mat-label>REGON</mat-label>
         <input
@@ -64,13 +63,13 @@
         mat-raised-button
         color="accent"
         type="submit"
-        [disabled]="regonModel.invalid"
+        [disabled]="regonForm.invalid"
       >
         Szukaj
       </button>
     </form>
 
-    <form class="search-criteria">
+    <form class="search-criteria" #krsForm="ngForm">
       <mat-form-field class="search-criteria__field">
         <mat-label>KRS</mat-label>
         <input
@@ -97,7 +96,7 @@
         mat-raised-button
         color="accent"
         type="submit"
-        [disabled]="krsModel.invalid"
+        [disabled]="krsForm.invalid"
       >
         Szukaj
       </button>
