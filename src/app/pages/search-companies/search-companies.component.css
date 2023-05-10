@@ -1,0 +1,15 @@
+.search-criterias {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5rem;
+}
+
+.search-criteria {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+}
+
+.search-criteria .search-criteria__field {
+    flex-basis: 100%;
+}

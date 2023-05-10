@@ -1,1 +1,103 @@
-<p>search-companies works!</p>
+<mat-card>
+  <mat-card-header>
+    <h1 mat-card-title>Wyszukaj firmę</h1>
+  </mat-card-header>
+
+  <mat-card-content class="search-criterias">
+    <form class="search-criteria">
+      <mat-form-field class="search-criteria__field">
+        <mat-label>NIP</mat-label>
+        <input
+          type="text"
+          name="nip"
+          matInput
+          [(ngModel)]="nip"
+          pattern="^[0-9]{10}$"
+          maxlength="10"
+          required
+          #nipModel="ngModel"
+          placeholder="np.: 5261040828"
+        />
+        <mat-error *ngIf="nipModel.invalid && nipModel.hasError('pattern')"
+          >NIP powinien składać się z 10 cyfr</mat-error
+        >
+        <mat-error *ngIf="nipModel.invalid && nipModel.hasError('required')"
+          >NIP jest wymagany</mat-error
+        >
+      </mat-form-field>
+
+      <button
+        mat-raised-button
+        color="accent"
+        type="submit"
+        [disabled]="nipModel.invalid"
+      >
+        Szukaj
+      </button>
+    </form>
+
+    <form class="search-criteria">
+      <mat-form-field class="search-criteria__field">
+        <mat-label>REGON</mat-label>
+        <input
+          type="text"
+          name="regon"
+          matInput
+          [(ngModel)]="regon"
+          pattern="^(\d{9}|\d{14})$"
+          maxlength="14"
+          required
+          #regonModel="ngModel"
+          placeholder="np.: 000017756"
+        />
+        <mat-error *ngIf="regonModel.invalid && regonModel.hasError('pattern')"
+          >REGON powinien składać się z 10 lub 14 cyfr</mat-error
+        >
+        <mat-error *ngIf="regonModel.invalid && regonModel.hasError('required')"
+          >REGON jest wymagany</mat-error
+        >
+      </mat-form-field>
+
+      <button
+        mat-raised-button
+        color="accent"
+        type="submit"
+        [disabled]="regonModel.invalid"
+      >
+        Szukaj
+      </button>
+    </form>
+
+    <form class="search-criteria">
+      <mat-form-field class="search-criteria__field">
+        <mat-label>KRS</mat-label>
+        <input
+          type="text"
+          name="krs"
+          matInput
+          [(ngModel)]="krs"
+          pattern="^[0-9]{10}$"
+          maxlength="10"
+          required
+          #krsModel="ngModel"
+          placeholder="np.: 000331501"
+        />
+        <mat-error *ngIf="krsModel.invalid && krsModel.hasError('pattern')"
+          >KRS powinien składać się z 10 cyfr</mat-error
+        >
+        <mat-error *ngIf="krsModel.invalid && krsModel.hasError('required')"
+          >KRS jest wymagany</mat-error
+        >
+      </mat-form-field>
+
+      <button
+        mat-raised-button
+        color="accent"
+        type="submit"
+        [disabled]="krsModel.invalid"
+      >
+        Szukaj
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>

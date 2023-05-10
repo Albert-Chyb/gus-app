@@ -5,5 +5,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./search-companies.component.css'],
 })
 export class SearchCompaniesComponent {
-  constructor() {}
+  nip = '';
+  regon = '';
+  krs = '';
 }
