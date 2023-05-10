@@ -25,7 +25,9 @@
         >
       </mat-form-field>
 
-      <button
+      <a
+        routerLink="/company"
+        [queryParams]="{ nip: nip }"
         class="search-criteria__run-search"
         mat-raised-button
         color="accent"
@@ -33,7 +35,7 @@
         [disabled]="nipForm.invalid"
       >
         Szukaj
-      </button>
+      </a>
     </form>
 
     <form class="search-criteria" #regonForm="ngForm">
@@ -58,7 +60,9 @@
         >
       </mat-form-field>
 
-      <button
+      <a
+        routerLink="company"
+        [queryParams]="{ regon: regon }"
         class="search-criteria__run-search"
         mat-raised-button
         color="accent"
@@ -66,7 +70,7 @@
         [disabled]="regonForm.invalid"
       >
         Szukaj
-      </button>
+      </a>
     </form>
 
     <form class="search-criteria" #krsForm="ngForm">
@@ -91,7 +95,9 @@
         >
       </mat-form-field>
 
-      <button
+      <a
+        routerLink="company"
+        [queryParams]="{ krs: krs }"
         class="search-criteria__run-search"
         mat-raised-button
         color="accent"
@@ -99,7 +105,7 @@
         [disabled]="krsForm.invalid"
       >
         Szukaj
-      </button>
+      </a>
     </form>
   </mat-card-content>
 </mat-card>

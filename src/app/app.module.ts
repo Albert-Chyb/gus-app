@@ -14,9 +14,10 @@ import { LocaleModule } from './locale.module';
 import { MatModule } from './mat.module';
 import { SearchCompaniesComponent } from './pages/search-companies/search-companies.component';
 import { MainContainerComponent } from './components/main-container/main-container.component';
+import { CompanyComponent } from './pages/company/company.component';
 
 @NgModule({
-  declarations: [AppComponent, SearchCompaniesComponent, MainContainerComponent],
+  declarations: [AppComponent, SearchCompaniesComponent, MainContainerComponent, CompanyComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
