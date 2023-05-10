@@ -1,15 +1,32 @@
 .search-criterias {
-    display: flex;
-    flex-direction: column;
-    row-gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5rem;
 }
 
 .search-criteria {
-    display: flex;
-    align-items: baseline;
-    gap: 1rem;
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
 }
 
 .search-criteria .search-criteria__field {
-    flex-basis: 100%;
+  flex-basis: 100%;
+}
+
+@media (max-width: 575.98px) {
+  .search-criteria {
+    flex-direction: column;
+    row-gap: 0;
+  }
+
+  .search-criteria .search-criteria__field {
+    flex-basis: auto;
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  .search-criteria .search-criteria__run-search {
+    width: 100%;
+  }
 }
