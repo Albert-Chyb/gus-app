@@ -1,0 +1,53 @@
+:host {
+  --spacing: 1rem;
+
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: var(--spacing);
+  padding-left: var(--spacing);
+  padding-right: var(--spacing);
+}
+
+/* Media query for when the screen is < 576px */
+@media (max-width: 575.98px) {
+  :host {
+    --spacing: 0.5rem;
+    max-width: 100%;
+  }
+}
+
+/* Media query for when the screen is >= 576px */
+@media (min-width: 576px) {
+  :host {
+    max-width: 540px;
+  }
+}
+
+/* Media query for when the screen is >=768px */
+@media (min-width: 768px) {
+  :host {
+    max-width: 720px;
+  }
+}
+
+/* Media query for when the screen is >=992px */
+@media (min-width: 992px) {
+  :host {
+    max-width: 960px;
+  }
+}
+
+/* Media query for when the screen is >=1200px */
+@media (min-width: 1200px) {
+  :host {
+    max-width: 1140px;
+  }
+}
+
+/* Media query for when the screen is >=1400px */
+@media (min-width: 1400px) {
+  :host {
+    max-width: 1320px;
+  }
+}
