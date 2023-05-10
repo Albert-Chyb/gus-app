@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Company } from '../classes/company';
 
 @Injectable({
   providedIn: 'root',
@@ -71,7 +72,7 @@ export class SearchCompaniesService {
       })
       .pipe(
         map((res) => JSON.parse(res)),
-        map((res) => res.root.dane)
+        map((res) => new Company(res.root.dane))
       );
   }
 }
