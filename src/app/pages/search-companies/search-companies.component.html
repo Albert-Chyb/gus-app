@@ -1,10 +1,14 @@
 <mat-card>
   <mat-card-header>
-    <h1 mat-card-title>Wyszukaj firmę</h1>
+    <h1 mat-card-title>Wyszukaj podmiot</h1>
   </mat-card-header>
 
   <mat-card-content class="search-criterias">
-    <form class="search-criteria" #nipForm="ngForm">
+    <form
+      class="search-criteria"
+      #nipForm="ngForm"
+      (ngSubmit)="runSearch({ nip })"
+    >
       <mat-form-field class="search-criteria__field">
         <mat-label>NIP</mat-label>
         <input
@@ -25,9 +29,7 @@
         >
       </mat-form-field>
 
-      <a
-        routerLink="/company"
-        [queryParams]="{ nip: nip }"
+      <button
         class="search-criteria__run-search"
         mat-raised-button
         color="accent"
@@ -35,10 +37,14 @@
         [disabled]="nipForm.invalid"
       >
         Szukaj
-      </a>
+      </button>
     </form>
 
-    <form class="search-criteria" #regonForm="ngForm">
+    <form
+      class="search-criteria"
+      #regonForm="ngForm"
+      (ngSubmit)="runSearch({ regon })"
+    >
       <mat-form-field class="search-criteria__field">
         <mat-label>REGON</mat-label>
         <input
@@ -60,9 +66,7 @@
         >
       </mat-form-field>
 
-      <a
-        routerLink="company"
-        [queryParams]="{ regon: regon }"
+      <button
         class="search-criteria__run-search"
         mat-raised-button
         color="accent"
@@ -70,10 +74,14 @@
         [disabled]="regonForm.invalid"
       >
         Szukaj
-      </a>
+      </button>
     </form>
 
-    <form class="search-criteria" #krsForm="ngForm">
+    <form
+      class="search-criteria"
+      #krsForm="ngForm"
+      (ngSubmit)="runSearch({ krs })"
+    >
       <mat-form-field class="search-criteria__field">
         <mat-label>KRS</mat-label>
         <input
@@ -95,9 +103,7 @@
         >
       </mat-form-field>
 
-      <a
-        routerLink="company"
-        [queryParams]="{ krs: krs }"
+      <button
         class="search-criteria__run-search"
         mat-raised-button
         color="accent"
@@ -105,7 +111,7 @@
         [disabled]="krsForm.invalid"
       >
         Szukaj
-      </a>
+      </button>
     </form>
   </mat-card-content>
 </mat-card>
