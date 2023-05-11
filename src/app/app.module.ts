@@ -15,9 +15,10 @@ import { MatModule } from './mat.module';
 import { SearchCompaniesComponent } from './pages/search-companies/search-companies.component';
 import { MainContainerComponent } from './components/main-container/main-container.component';
 import { CompanyComponent } from './pages/company/company.component';
+import { ErrorCardComponent } from './components/error-card/error-card.component';
 
 @NgModule({
-  declarations: [AppComponent, SearchCompaniesComponent, MainContainerComponent, CompanyComponent],
+  declarations: [AppComponent, SearchCompaniesComponent, MainContainerComponent, CompanyComponent, ErrorCardComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

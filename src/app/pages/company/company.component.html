@@ -1,4 +1,4 @@
-<mat-card *ngIf="company$ | async as company">
+<mat-card *ngIf="company$ | async as company; else noDataFound">
   <mat-card-header>
     <h1 mat-card-title>Podstawowe informacje o podmiocie</h1>
     <h2 mat-card-subtitle>{{ company.nazwa }}</h2>
@@ -18,3 +18,7 @@
     </table>
   </mat-card-content>
 </mat-card>
+
+<ng-template #noDataFound>
+  <app-error-card [message]="error?.errorMessagePl ?? ''"></app-error-card>
+</ng-template>

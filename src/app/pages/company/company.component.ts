@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { Observable, catchError, of } from 'rxjs';
 import { Company } from 'src/app/classes/company';
 import { SearchCompaniesService } from 'src/app/services/search-companies.service';
+import { GusError } from 'src/app/types/gus-error';
 
 @Component({
   templateUrl: './company.component.html',
@@ -14,14 +15,15 @@ export class CompanyComponent implements OnInit {
     private readonly searchCompanies: SearchCompaniesService
   ) {}
 
-  company$!: Observable<Company>;
+  company$!: Observable<Company | null>;
   displayedColumns: string[] = ['key', 'value'];
+  error: GusError | null = null;
 
   ngOnInit(): void {
     this.company$ = this.search();
   }
 
-  search(): Observable<Company> {
+  search(): Observable<Company | null> {
     let searchTask: Observable<Company>;
 
     if (this.activatedRoute.snapshot.queryParamMap.has('nip')) {
@@ -40,7 +42,13 @@ export class CompanyComponent implements OnInit {
       throw new Error('No query params');
     }
 
-    return searchTask;
+    return searchTask.pipe(
+      catchError((error: Error) => {
+        this.error = error.cause as GusError;
+
+        return of(null);
+      })
+    );
   }
 
   translateKeysForDisplay(company: Company): [string, string][] {
@@ -64,9 +72,9 @@ export class CompanyComponent implements OnInit {
     };
 
     return Object.entries(company).map(([key, value]) => {
-      if(key === 'silosID') {
+      if (key === 'silosID') {
         value = company.getSilosIDDescription();
-      } else if(key === 'typ') {
+      } else if (key === 'typ') {
         value = company.getTypeDescription();
       }
 
