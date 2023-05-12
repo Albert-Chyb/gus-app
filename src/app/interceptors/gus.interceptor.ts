@@ -10,7 +10,8 @@ import { Inject, Injectable } from '@angular/core';
 import { Observable, from, map, of, switchMap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Builder, ParserOptions, parseStringPromise, processors } from 'xml2js';
-import { GusError } from '../types/gus-error';
+import { IGusError } from '../types/gus-error';
+import { GusError } from '../classes/gus-error';
 
 @Injectable()
 export class GusInterceptor implements HttpInterceptor {
@@ -76,9 +77,9 @@ export class GusInterceptor implements HttpInterceptor {
                     typeof body === 'object' &&
                     'errorCode' in body.root.dane
                   ) {
-                    const error = body.root.dane as GusError;
+                    const error = body.root.dane as IGusError;
 
-                    throw new Error(error.errorMessageEn, { cause: error });
+                    throw new GusError(error);
                   }
 
                   const newResponse = {

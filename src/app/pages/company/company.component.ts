@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, catchError, of } from 'rxjs';
+import { Observable, catchError, of, throwError } from 'rxjs';
 import { Company } from 'src/app/classes/company';
+import { GusError } from 'src/app/classes/gus-error';
 import { SearchCompaniesService } from 'src/app/services/search-companies.service';
-import { GusError } from 'src/app/types/gus-error';
 
 @Component({
   templateUrl: './company.component.html',
@@ -43,10 +43,14 @@ export class CompanyComponent implements OnInit {
     }
 
     return searchTask.pipe(
-      catchError((error: Error) => {
-        this.error = error.cause as GusError;
+      catchError((error: any) => {
+        if (GusError.isGusError(error)) {
+          this.error = error;
 
-        return of(null);
+          return of(null);
+        }
+
+        return throwError(() => error);
       })
     );
   }
