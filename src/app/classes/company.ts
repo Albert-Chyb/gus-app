@@ -1,5 +1,7 @@
+import { reports } from '../constants/company-reports';
+
 export type TypRegon = 'P' | 'F' | 'LP' | 'LF';
-export type SilosID = '1' | '2' | '3' | '4' | '5' | '6';
+export type SilosID = '1' | '2' | '3' | '4' | '6';
 
 export interface CompanyData {
   regon: string;
@@ -20,6 +22,24 @@ export interface CompanyData {
   miejscowoscPoczty: string;
 }
 
+export type CompanyReportName =
+  | 'BIR11OsFizycznaDaneOgolne'
+  | 'BIR11OsFizycznaDzialalnoscCeidg'
+  | 'BIR11OsFizycznaDzialalnoscRolnicza'
+  | 'BIR11OsFizycznaDzialalnoscPozostala'
+  | 'BIR11OsFizycznaDzialalnoscSkreslonaDo20141108'
+  | 'BIR11OsFizycznaPkd'
+  | 'BIR11OsFizycznaListaJednLokalnych'
+  | 'BIR11JednLokalnaOsFizycznej'
+  | 'BIR11JednLokalnaOsFizycznejPkd'
+  | 'BIR11OsPrawna'
+  | 'BIR11OsPrawnaPkd'
+  | 'BIR11OsPrawnaListaJednLokalnych'
+  | 'BIR11JednLokalnaOsPrawnej'
+  | 'BIR11JednLokalnaOsPrawnejPkd'
+  | 'BIR11OsPrawnaSpCywilnaWspolnicy'
+  | 'BIR11TypPodmiotu';
+
 export class Company implements CompanyData {
   regon: string;
   nip: string;
@@ -37,6 +57,7 @@ export class Company implements CompanyData {
   silosID: SilosID;
   dataZakonczeniaDzialalnosci: string;
   miejscowoscPoczty: string;
+  availableReports: CompanyReportName[];
 
   constructor(initialData: CompanyData) {
     const {
@@ -74,6 +95,8 @@ export class Company implements CompanyData {
     this.silosID = silosID;
     this.dataZakonczeniaDzialalnosci = dataZakonczeniaDzialalnosci;
     this.miejscowoscPoczty = miejscowoscPoczty;
+
+    this.availableReports = Company.availableReports(this);
   }
 
   /**
@@ -114,5 +137,13 @@ export class Company implements CompanyData {
       default:
         return 'Nieznany';
     }
+  }
+
+  static availableReports(company: Company): CompanyReportName[] {
+    return reports
+      .filter(
+        ([type, silosID]) => type === company.typ && silosID === company.silosID
+      )
+      .map(([, , reportName]) => reportName);
   }
 }
