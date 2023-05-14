@@ -70,7 +70,7 @@ export class CompanyComponent implements OnInit {
       nrNieruchomosci: 'Nr nieruchomości',
       nrLokalu: 'Nr lokalu',
       typ: 'Nazwa podstawowej formy prawnej',
-      silosID: 'Silos',
+      silosID: 'Rodzaj działalności',
       dataZakonczeniaDzialalnosci: 'Data zakończenia działalności',
       miejscowoscPoczty: 'Miejscowość poczty',
     };
