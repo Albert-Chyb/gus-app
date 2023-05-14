@@ -21,7 +21,7 @@ export class SearchCompaniesService {
   }
 
   byREGON(regon: string) {
-    if (isREGONValid(regon)) {
+    if (!isREGONValid(regon)) {
       throw new Error('Invalid REGON');
     }
 
