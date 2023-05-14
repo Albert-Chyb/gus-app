@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { NIPValidator } from 'src/app/validators/nip';
+import { REGONValidator } from 'src/app/validators/regon';
 
 @Component({
   templateUrl: './search-companies.component.html',
@@ -9,6 +11,11 @@ export class SearchCompaniesComponent {
   nip = '';
   regon = '';
   krs = '';
+
+  validators = {
+    nip: [NIPValidator],
+    regon: [REGONValidator],
+  };
 
   constructor(private readonly router: Router) {}
 

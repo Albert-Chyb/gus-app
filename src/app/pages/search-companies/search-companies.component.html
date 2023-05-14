@@ -20,12 +20,16 @@
           required
           #nipModel="ngModel"
           placeholder="np.: 5261040828"
+          [appGenericValidator]="validators.nip"
         />
         <mat-error *ngIf="nipModel.invalid && nipModel.hasError('pattern')"
           >NIP powinien składać się z 10 cyfr</mat-error
         >
         <mat-error *ngIf="nipModel.invalid && nipModel.hasError('required')"
           >NIP jest wymagany</mat-error
+        >
+        <mat-error *ngIf="nipModel.invalid && nipModel.hasError('isNIPInvalid') && !nipModel.hasError('pattern')"
+          >To nie jest poprawny kod NIP</mat-error
         >
       </mat-form-field>
 
@@ -57,12 +61,16 @@
           required
           #regonModel="ngModel"
           placeholder="np.: 000017756"
+          [appGenericValidator]="validators.regon"
         />
         <mat-error *ngIf="regonModel.invalid && regonModel.hasError('pattern')"
           >REGON powinien składać się z 10 lub 14 cyfr</mat-error
         >
         <mat-error *ngIf="regonModel.invalid && regonModel.hasError('required')"
           >REGON jest wymagany</mat-error
+        >
+        <mat-error *ngIf="regonModel.invalid && regonModel.hasError('isREGONInvalid') && !regonModel.hasError('pattern')"
+          >To nie jest poprawny kod REGON</mat-error
         >
       </mat-form-field>
 
@@ -93,7 +101,7 @@
           maxlength="10"
           required
           #krsModel="ngModel"
-          placeholder="np.: 000331501"
+          placeholder="np.: 0000331501"
         />
         <mat-error *ngIf="krsModel.invalid && krsModel.hasError('pattern')"
           >KRS powinien składać się z 10 cyfr</mat-error

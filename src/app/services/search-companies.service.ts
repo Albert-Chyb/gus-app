@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Company } from '../classes/company';
+import { isNIPValid } from '../validators/nip';
+import { isREGONValid } from '../validators/regon';
 
 @Injectable({
   providedIn: 'root',
@@ -11,16 +13,16 @@ export class SearchCompaniesService {
   constructor(private readonly http: HttpClient) {}
 
   byNIP(nip: string): Observable<any> {
-    if (nip.length !== 10) {
-      throw new Error('NIP must be 10 digits long');
+    if (!isNIPValid(nip)) {
+      throw new Error('Invalid NIP');
     }
 
     return this.createRequest({ nip });
   }
 
   byREGON(regon: string) {
-    if (regon.length !== 9 && regon.length !== 14) {
-      throw new Error('REGON must be 9 or 14 digits long');
+    if (isREGONValid(regon)) {
+      throw new Error('Invalid REGON');
     }
 
     return this.createRequest({ regon });
