@@ -75,14 +75,16 @@ export class CompanyComponent implements OnInit {
       miejscowoscPoczty: 'Miejscowość poczty',
     };
 
-    return Object.entries(company).map(([key, value]) => {
-      if (key === 'silosID') {
-        value = company.getSilosIDDescription();
-      } else if (key === 'typ') {
-        value = company.getTypeDescription();
-      }
+    return Object.entries(company)
+      .filter(([key]) => key in translations)
+      .map(([key, value]) => {
+        if (key === 'silosID') {
+          value = company.getSilosIDDescription();
+        } else if (key === 'typ') {
+          value = company.getTypeDescription();
+        }
 
-      return [translations[key], value];
-    });
+        return [translations[key], value];
+      });
   }
 }
