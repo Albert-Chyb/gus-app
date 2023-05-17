@@ -1,4 +1,6 @@
-<mat-card *ngIf="company$ | async as company; else noDataFound">
+<a mat-button color="accent" routerLink="/">Wróć do wyszukiwarki</a>
+
+<mat-card class="company-data" *ngIf="company$ | async as company; else noDataFound">
   <mat-card-header>
     <h1 mat-card-title>Podstawowe informacje o podmiocie</h1>
     <h2 mat-card-subtitle>{{ company.nazwa }}</h2>
