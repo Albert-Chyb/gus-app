@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Company } from '../classes/company';
 import { isNIPValid } from '../validators/nip';
@@ -12,7 +12,7 @@ import { isREGONValid } from '../validators/regon';
 export class SearchCompaniesService {
   constructor(private readonly http: HttpClient) {}
 
-  byNIP(nip: string): Observable<any> {
+  byNIP(nip: string) {
     if (!isNIPValid(nip)) {
       throw new Error('Invalid NIP');
     }
@@ -74,7 +74,12 @@ export class SearchCompaniesService {
       })
       .pipe(
         map((res) => JSON.parse(res)),
-        map((res) => new Company(res.root.dane))
+        map((res) => res.root.dane),
+        map((res) =>
+          Array.isArray(res)
+            ? res.map((c) => new Company(c))
+            : [new Company(res)]
+        )
       );
   }
 }

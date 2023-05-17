@@ -15,16 +15,16 @@ export class CompanyComponent implements OnInit {
     private readonly searchCompanies: SearchCompaniesService
   ) {}
 
-  company$!: Observable<Company | null>;
+  companies$!: Observable<Company[] | null>;
   displayedColumns: string[] = ['key', 'value'];
   error: GusError | null = null;
 
   ngOnInit(): void {
-    this.company$ = this.search();
+    this.companies$ = this.search();
   }
 
-  search(): Observable<Company | null> {
-    let searchTask: Observable<Company>;
+  search() {
+    let searchTask: Observable<Company[]>;
 
     if (this.activatedRoute.snapshot.queryParamMap.has('nip')) {
       searchTask = this.searchCompanies.byNIP(
