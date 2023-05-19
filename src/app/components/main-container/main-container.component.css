@@ -1,4 +1,4 @@
-:host {
+.main-content {
   --spacing: 1rem;
 
   display: block;
@@ -9,9 +9,13 @@
   padding-right: var(--spacing);
 }
 
+.header-actions {
+  margin-left: auto;
+}
+
 /* Media query for when the screen is < 576px */
 @media (max-width: 575.98px) {
-  :host {
+  .main-content {
     --spacing: 0.5rem;
     max-width: 100%;
   }
@@ -19,35 +23,35 @@
 
 /* Media query for when the screen is >= 576px */
 @media (min-width: 576px) {
-  :host {
+  .main-content {
     max-width: 540px;
   }
 }
 
 /* Media query for when the screen is >=768px */
 @media (min-width: 768px) {
-  :host {
+  .main-content {
     max-width: 720px;
   }
 }
 
 /* Media query for when the screen is >=992px */
 @media (min-width: 992px) {
-  :host {
+  .main-content {
     max-width: 960px;
   }
 }
 
 /* Media query for when the screen is >=1200px */
 @media (min-width: 1200px) {
-  :host {
+  .main-content {
     max-width: 1140px;
   }
 }
 
 /* Media query for when the screen is >=1400px */
 @media (min-width: 1400px) {
-  :host {
+  .main-content {
     max-width: 1320px;
   }
 }

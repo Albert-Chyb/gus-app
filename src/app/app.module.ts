@@ -17,6 +17,7 @@ import { LocaleModule } from './locale.module';
 import { MatModule } from './mat.module';
 import { CompanyComponent } from './pages/company/company.component';
 import { SearchCompaniesComponent } from './pages/search-companies/search-companies.component';
+import { AuthStateComponent } from './pages/auth-state/auth-state.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { SearchCompaniesComponent } from './pages/search-companies/search-compan
     CompanyComponent,
     ErrorCardComponent,
     GenericValidatorDirective,
+    AuthStateComponent,
   ],
   imports: [
     BrowserModule,

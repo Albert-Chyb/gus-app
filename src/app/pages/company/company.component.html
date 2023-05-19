@@ -1,7 +1,5 @@
-<a mat-button color="accent" routerLink="/">Wróć do wyszukiwarki</a>
-
 <ng-container *ngIf="companies$ | async as companies; else noDataFound">
-  <mat-card class="company-data" *ngFor="let company of companies">
+  <mat-card *ngFor="let company of companies">
     <mat-card-header>
       <h1 mat-card-title>Podstawowe informacje o podmiocie</h1>
       <h2 mat-card-subtitle>{{ company.nazwa }}</h2>
