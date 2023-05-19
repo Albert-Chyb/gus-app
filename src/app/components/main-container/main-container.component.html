@@ -4,6 +4,14 @@
   </nav>
 
   <div class="header-actions">
+    <a
+      mat-icon-button
+      routerLink="/auth-state"
+      matTooltip="Stan autoryzacji"
+      aria-label="Sprawdź aktualny stan autoryzacji"
+      ><mat-icon>account_box</mat-icon></a
+    >
+
     <ng-container
       *ngIf="isLoggedIn$ | async; then logoutBtn; else loginBtn"
     ></ng-container>
@@ -20,6 +28,7 @@
     mat-icon-button
     matTooltip="Zaloguj się"
     aria-label="Zaloguj się do aplikacji"
+    (click)="login()"
   >
     <mat-icon>login</mat-icon>
   </button>
@@ -31,6 +40,7 @@
     mat-icon-button
     matTooltip="Wyloguj się"
     aria-label="Wyloguj się z aplikacji"
+    (click)="logout()"
   >
     <mat-icon>logout</mat-icon>
   </button>

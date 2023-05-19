@@ -1,0 +1,19 @@
+.auth-status {
+  text-align: center;
+}
+
+.auth-status .auth-status__icon {
+  --icon-size: 7rem;
+
+  font-size: var(--icon-size);
+  width: var(--icon-size);
+  height: var(--icon-size);
+}
+
+.auth-status .auth-status__status-text {
+  justify-content: center;
+}
+
+.auth-status .auth-status__actions {
+  justify-content: center;
+}

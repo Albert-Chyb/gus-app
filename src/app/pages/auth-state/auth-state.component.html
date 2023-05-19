@@ -1,1 +1,22 @@
-<p>auth-state works!</p>
+<ng-container *ngIf="authStatus$ | async as authState">
+  <mat-card class="auth-status" *ngIf="authState.isLoggedIn">
+    <mat-card-header class="auth-status__status-text">
+      <h1 mat-card-title>Jesteś zalogowany</h1>
+      <p mat-card-subtitle>Twój SID: {{ authState.sid }}</p>
+    </mat-card-header>
+
+    <mat-card-content>
+      <mat-icon class="auth-status__icon" color="accent">task_alt</mat-icon>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="auth-status" *ngIf="!authState.isLoggedIn">
+    <mat-card-header class="auth-status__status-text">
+      <h1 mat-card-title>Jesteś wylogowany</h1>
+    </mat-card-header>
+
+    <mat-card-content>
+      <mat-icon class="auth-status__icon" color="warn">dangerous</mat-icon>
+    </mat-card-content>
+  </mat-card>
+</ng-container>
