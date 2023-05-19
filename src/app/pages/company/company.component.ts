@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, catchError, of, throwError } from 'rxjs';
+import { Observable, catchError, of, switchMap, throwError } from 'rxjs';
 import { Company } from 'src/app/classes/company';
 import { GusError } from 'src/app/classes/gus-error';
 import { SearchCompaniesService } from 'src/app/services/search-companies.service';
@@ -20,30 +20,19 @@ export class CompanyComponent implements OnInit {
   error: GusError | null = null;
 
   ngOnInit(): void {
-    this.companies$ = this.search();
-  }
-
-  search() {
-    let searchTask: Observable<Company[]>;
-
-    if (this.activatedRoute.snapshot.queryParamMap.has('nip')) {
-      searchTask = this.searchCompanies.byNIP(
-        this.activatedRoute.snapshot.queryParamMap.get('nip')!
-      );
-    } else if (this.activatedRoute.snapshot.queryParamMap.has('regon')) {
-      searchTask = this.searchCompanies.byREGON(
-        this.activatedRoute.snapshot.queryParamMap.get('regon')!
-      );
-    } else if (this.activatedRoute.snapshot.queryParamMap.has('krs')) {
-      searchTask = this.searchCompanies.byKRS(
-        this.activatedRoute.snapshot.queryParamMap.get('krs')!
-      );
-    } else {
-      throw new Error('No query params');
-    }
-
-    return searchTask.pipe(
-      catchError((error: any) => {
+    this.companies$ = this.activatedRoute.queryParamMap.pipe(
+      switchMap((params) => {
+        if (params.has('nip')) {
+          return this.searchCompanies.byNIP(params.get('nip') ?? '');
+        } else if (params.has('regon')) {
+          return this.searchCompanies.byREGON(params.get('regon') ?? '');
+        } else if (params.has('krs')) {
+          return this.searchCompanies.byKRS(params.get('krs') ?? '');
+        } else {
+          return throwError(() => new Error('No query params'));
+        }
+      }),
+      catchError((error) => {
         if (GusError.isGusError(error)) {
           this.error = error;
 
