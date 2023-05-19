@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { firstValueFrom } from 'rxjs';
+import { BehaviorSubject, firstValueFrom } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -8,6 +8,13 @@ import { environment } from 'src/environments/environment';
 })
 export class AuthService {
   constructor(private readonly http: HttpClient) {}
+
+  private readonly _authChange$ = new BehaviorSubject<string>(this.getSID());
+
+  /**
+   * Emits whenever SID changes.
+   */
+  readonly authChange$ = this._authChange$.asObservable();
 
   async login() {
     const headers = new HttpHeaders({
@@ -31,7 +38,9 @@ export class AuthService {
       )
     );
 
-    localStorage.setItem('sid', res);
+    this.storeSID(res);
+
+    return res;
   }
 
   async logout() {
@@ -56,7 +65,7 @@ export class AuthService {
     );
 
     if (res === 'true') {
-      localStorage.removeItem('sid');
+      this.forgetSID();
     }
   }
 
@@ -90,5 +99,15 @@ export class AuthService {
     );
 
     return res === '1';
+  }
+
+  private storeSID(sid: string) {
+    localStorage.setItem('sid', sid);
+    this._authChange$.next(sid);
+  }
+
+  private forgetSID() {
+    localStorage.removeItem('sid');
+    this._authChange$.next('');
   }
 }
