@@ -36,11 +36,9 @@ export class SearchCompaniesService {
     return this.createRequest({ krs });
   }
 
-  private createRequest(queryParams: {
-    nip?: string;
-    regon?: string;
-    krs?: string;
-  }) {
+  private createRequest(
+    queryParams: { nip: string } | { regon: string } | { krs: string }
+  ) {
     let params;
 
     if ('nip' in queryParams) {
