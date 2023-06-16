@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 import { AuthService } from 'src/app/services/auth.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,9 +16,9 @@ import { GusInterceptor } from './interceptors/gus.interceptor';
 import { SidInterceptor } from './interceptors/sid.interceptor';
 import { LocaleModule } from './locale.module';
 import { MatModule } from './mat.module';
+import { AuthStateComponent } from './pages/auth-state/auth-state.component';
 import { CompanyComponent } from './pages/company/company.component';
 import { SearchCompaniesComponent } from './pages/search-companies/search-companies.component';
-import { AuthStateComponent } from './pages/auth-state/auth-state.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { AuthStateComponent } from './pages/auth-state/auth-state.component';
     LocaleModule,
     HttpClientModule,
     FormsModule,
+    NgxMaskDirective,
   ],
   providers: [
     {
@@ -55,6 +57,7 @@ import { AuthStateComponent } from './pages/auth-state/auth-state.component';
       deps: [AuthService],
       useFactory: (auth: AuthService) => authInitializer(auth),
     },
+    provideNgxMask(),
   ],
   bootstrap: [AppComponent],
 })

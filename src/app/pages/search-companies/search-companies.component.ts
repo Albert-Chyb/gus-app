@@ -17,6 +17,10 @@ export class SearchCompaniesComponent {
     regon: [REGONValidator],
   };
 
+  nipMask = {
+
+  }
+
   constructor(private readonly router: Router) {}
 
   runSearch(

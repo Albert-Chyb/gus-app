@@ -21,6 +21,7 @@
           #nipModel="ngModel"
           placeholder="np.: 5261040828"
           [appGenericValidator]="validators.nip"
+          mask="0000000000"
         />
         <mat-error *ngIf="nipModel.invalid && nipModel.hasError('pattern')"
           >NIP powinien składać się z 10 cyfr</mat-error
@@ -28,7 +29,12 @@
         <mat-error *ngIf="nipModel.invalid && nipModel.hasError('required')"
           >NIP jest wymagany</mat-error
         >
-        <mat-error *ngIf="nipModel.invalid && nipModel.hasError('isNIPInvalid') && !nipModel.hasError('pattern')"
+        <mat-error
+          *ngIf="
+            nipModel.invalid &&
+            nipModel.hasError('isNIPInvalid') &&
+            !nipModel.hasError('pattern')
+          "
           >To nie jest poprawny kod NIP</mat-error
         >
       </mat-form-field>
@@ -69,7 +75,12 @@
         <mat-error *ngIf="regonModel.invalid && regonModel.hasError('required')"
           >REGON jest wymagany</mat-error
         >
-        <mat-error *ngIf="regonModel.invalid && regonModel.hasError('isREGONInvalid') && !regonModel.hasError('pattern')"
+        <mat-error
+          *ngIf="
+            regonModel.invalid &&
+            regonModel.hasError('isREGONInvalid') &&
+            !regonModel.hasError('pattern')
+          "
           >To nie jest poprawny kod REGON</mat-error
         >
       </mat-form-field>
